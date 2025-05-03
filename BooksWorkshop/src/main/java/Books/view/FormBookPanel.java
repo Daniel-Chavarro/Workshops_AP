@@ -210,13 +210,180 @@ public class FormBookPanel extends JPanel {
         }
     };
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Form Book Panel");
-        FormBookPanel formBookPanel = new FormBookPanel();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(formBookPanel);
-        frame.pack();
-        frame.setVisible(true);
+    public FactoryButton getFactoryButton() {
+        return factoryButton;
+    }
+
+    public void setFactoryButton(FactoryButton factoryButton) {
+        this.factoryButton = factoryButton;
+    }
+
+    public JPanel getFormPanel() {
+        return formPanel;
+    }
+
+    public void setFormPanel(JPanel formPanel) {
+        this.formPanel = formPanel;
+    }
+
+    public JPanel getAdditionalPanel() {
+        return additionalPanel;
+    }
+
+    public void setAdditionalPanel(JPanel additionalPanel) {
+        this.additionalPanel = additionalPanel;
+    }
+
+    public JPanel getButtonPanel() {
+        return buttonPanel;
+    }
+
+    public void setButtonPanel(JPanel buttonPanel) {
+        this.buttonPanel = buttonPanel;
+    }
+
+    public JLabel getTypeBookLabel() {
+        return typeBookLabel;
+    }
+
+    public void setTypeBookLabel(JLabel typeBookLabel) {
+        this.typeBookLabel = typeBookLabel;
+    }
+
+    public JLabel getBookTitleLabel() {
+        return bookTitleLabel;
+    }
+
+    public void setBookTitleLabel(JLabel bookTitleLabel) {
+        this.bookTitleLabel = bookTitleLabel;
+    }
+
+    public JLabel getAuthorLabel() {
+        return authorLabel;
+    }
+
+    public void setAuthorLabel(JLabel authorLabel) {
+        this.authorLabel = authorLabel;
+    }
+
+    public JLabel getPriceLabel() {
+        return priceLabel;
+    }
+
+    public void setPriceLabel(JLabel priceLabel) {
+        this.priceLabel = priceLabel;
+    }
+
+    public JLabel getCourseLabel() {
+        return courseLabel;
+    }
+
+    public void setCourseLabel(JLabel courseLabel) {
+        this.courseLabel = courseLabel;
+    }
+
+    public JLabel getFacultyLabel() {
+        return facultyLabel;
+    }
+
+    public void setFacultyLabel(JLabel facultyLabel) {
+        this.facultyLabel = facultyLabel;
+    }
+
+    public JLabel getTypeNovelLabel() {
+        return typeNovelLabel;
+    }
+
+    public void setTypeNovelLabel(JLabel typeNovelLabel) {
+        this.typeNovelLabel = typeNovelLabel;
+    }
+
+    public JComboBox<TypeBook> getTypeBookComboBox() {
+        return typeBookComboBox;
+    }
+
+    public void setTypeBookComboBox(JComboBox<TypeBook> typeBookComboBox) {
+        this.typeBookComboBox = typeBookComboBox;
+    }
+
+    public JComboBox<TypeNovel> getTypeNovelComboBox() {
+        return typeNovelComboBox;
+    }
+
+    public void setTypeNovelComboBox(JComboBox<TypeNovel> typeNovelComboBox) {
+        this.typeNovelComboBox = typeNovelComboBox;
+    }
+
+    public JTextField getBookTitleTextField() {
+        return bookTitleTextField;
+    }
+
+    public void setBookTitleTextField(JTextField bookTitleTextField) {
+        this.bookTitleTextField = bookTitleTextField;
+    }
+
+    public JTextField getAuthorTextField() {
+        return authorTextField;
+    }
+
+    public void setAuthorTextField(JTextField authorTextField) {
+        this.authorTextField = authorTextField;
+    }
+
+    public JTextField getPriceTextField() {
+        return priceTextField;
+    }
+
+    public void setPriceTextField(JTextField priceTextField) {
+        this.priceTextField = priceTextField;
+    }
+
+    public JTextField getCourseTextField() {
+        return courseTextField;
+    }
+
+    public void setCourseTextField(JTextField courseTextField) {
+        this.courseTextField = courseTextField;
+    }
+
+    public JTextField getFacultyTextField() {
+        return facultyTextField;
+    }
+
+    public void setFacultyTextField(JTextField facultyTextField) {
+        this.facultyTextField = facultyTextField;
+    }
+
+    public JButton getSaveBtn() {
+        return saveBtn;
+    }
+
+    public void setSaveBtn(JButton saveBtn) {
+        this.saveBtn = saveBtn;
+    }
+
+    public JButton getCancelBtn() {
+        return cancelBtn;
+    }
+
+    public void setCancelBtn(JButton cancelBtn) {
+        this.cancelBtn = cancelBtn;
+    }
+
+    public Book getOldBook() {
+        return oldBook;
+    }
+
+    public void setOldBook(Book oldBook) {
+        this.oldBook = oldBook;
+    }
+
+    public ActionListener getModifyTypeBookListener() {
+        return modifyTypeBookListener;
+    }
+
+    public void setModifyTypeBookListener(ActionListener modifyTypeBookListener) {
+        this.modifyTypeBookListener = modifyTypeBookListener;
     }
 }
 

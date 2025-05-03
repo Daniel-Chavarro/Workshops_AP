@@ -108,9 +108,9 @@ public class ManageBooksPanel extends JPanel {
         bottomPanel.setOpaque(false);
 
         // Create action buttons with appropriate colors
-        addButton = factoryButton.createButton("Add New Product", new Color(0, 123, 255), "ADD_PRODUCT", new Dimension(150, 30));
-        deleteButton = factoryButton.createButton("Delete Product", new Color(220, 53, 69), "DELETE_PRODUCT", new Dimension(150, 30));
-        updateButton = factoryButton.createButton("Update Product", new Color(40, 167, 69), "UPDATE_PRODUCT", new Dimension(150, 30));
+        addButton = factoryButton.createButton("Add New Product", new Color(0, 123, 255), "ADD_BOOK", new Dimension(150, 30));
+        deleteButton = factoryButton.createButton("Delete Product", new Color(220, 53, 69), "DELETE_BOOK", new Dimension(150, 30));
+        updateButton = factoryButton.createButton("Update Product", new Color(40, 167, 69), "UPDATE_BOOK", new Dimension(150, 30));
         backButton = factoryButton.createButton("Back", new Color(108, 117, 125), "BACK", new Dimension(150, 30));
 
 
@@ -119,5 +119,93 @@ public class ManageBooksPanel extends JPanel {
         bottomPanel.add(addButton);
         bottomPanel.add(deleteButton);
         bottomPanel.add(updateButton);
+    }
+
+    public FactoryButton getFactoryButton() {
+        return factoryButton;
+    }
+
+    public void setFactoryButton(FactoryButton factoryButton) {
+        this.factoryButton = factoryButton;
+    }
+
+    public JPanel getFilterPanel() {
+        return filterPanel;
+    }
+
+    public void setFilterPanel(JPanel filterPanel) {
+        this.filterPanel = filterPanel;
+    }
+
+    public JPanel getBottomPanel() {
+        return bottomPanel;
+    }
+
+    public void setBottomPanel(JPanel bottomPanel) {
+        this.bottomPanel = bottomPanel;
+    }
+
+    public JScrollPane getTablePanel() {
+        return tablePanel;
+    }
+
+    public void setTablePanel(JScrollPane tablePanel) {
+        this.tablePanel = tablePanel;
+    }
+
+    public JTextField getIdFilterField() {
+        return idFilterField;
+    }
+
+    public void setIdFilterField(JTextField idFilterField) {
+        this.idFilterField = idFilterField;
+    }
+
+    public JTable getBookTable() {
+        return bookTable;
+    }
+
+    public void setBookTable(JTable bookTable) {
+        this.bookTable = bookTable;
+    }
+
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
+    public void setSearchButton(JButton searchButton) {
+        this.searchButton = searchButton;
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(JButton addButton) {
+        this.addButton = addButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public void setDeleteButton(JButton deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+    public JButton getUpdateButton() {
+        return updateButton;
+    }
+
+    public void setUpdateButton(JButton updateButton) {
+        this.updateButton = updateButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(JButton backButton) {
+        this.backButton = backButton;
     }
 }
