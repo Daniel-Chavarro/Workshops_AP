@@ -77,34 +77,47 @@ public class MainFrame extends JFrame {
      */
     private JPanel createSidebarPanel() {
         JPanel sidebar = new JPanel();
-        sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
+        // Cambiamos a GridBagLayout para mejor control del tamaño
+        sidebar.setLayout(new GridBagLayout());
         sidebar.setBackground(new Color(51, 51, 51));
         sidebar.setPreferredSize(new Dimension(200, getHeight()));
         sidebar.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
 
-        // Add bakery logo or name
-        JLabel titleLabel = new JLabel("Books System");
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER; // Componentes ocupan todo el ancho
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Relleno horizontal
+        gbc.weightx = 1.0; // Distribuye espacio horizontal
+        gbc.insets = new Insets(5, 0, 5, 0); // Espacio entre componentes
+
+        // Título con mejor configuración
+        JLabel titleLabel = new JLabel("Books System", SwingConstants.CENTER);
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
+        gbc.insets = new Insets(0, 0, 30, 0); // Más espacio después del título
+        sidebar.add(titleLabel, gbc);
 
-        // Create menu buttons
-        homeButton = factoryButton.createButton("Home", new Color(0, 123, 255), "BACK", new Dimension(180, 40));
-        newBookButton = factoryButton.createButton("New Book", new Color(0, 123, 255), "ADD_BOOK", new Dimension(180, 40));
-        booksButton = factoryButton.createButton("Manage Books", new Color(0, 123, 255), "MANAGE_BOOK", new Dimension(180, 40));
+        // Restaurar insets normales para los botones
+        gbc.insets = new Insets(5, 0, 5, 0);
 
-        // Add components to sidebar
-        sidebar.add(titleLabel);
-        sidebar.add(Box.createRigidArea(new Dimension(0, 20)));
-        sidebar.add(homeButton);
-        sidebar.add(Box.createRigidArea(new Dimension(0, 10)));
-        sidebar.add(booksButton);
-        sidebar.add(Box.createRigidArea(new Dimension(0, 10)));
-        sidebar.add(newBookButton);
+        // Crear botones con tamaño adaptable
+        homeButton = factoryButton.createButton("Home", new Color(0, 123, 255), "BACK", null);
+        booksButton = factoryButton.createButton("Manage Books", new Color(0, 123, 255), "MANAGE_BOOK", null);
+        newBookButton = factoryButton.createButton("New Book", new Color(0, 123, 255), "ADD_BOOK", null);
 
-        // Add spring to push everything to the top
-        sidebar.add(Box.createVerticalGlue());
+        // Aseguramos que los botones llenen el espacio disponible
+        homeButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        booksButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        newBookButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+
+        sidebar.add(homeButton, gbc);
+        sidebar.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
+        sidebar.add(booksButton, gbc);
+        sidebar.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
+        sidebar.add(newBookButton, gbc);
+
+        // Añadir espacio flexible al final para empujar todo hacia arriba
+        gbc.weighty = 1.0;
+        sidebar.add(Box.createVerticalGlue(), gbc);
 
         return sidebar;
     }

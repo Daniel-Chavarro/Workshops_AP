@@ -36,7 +36,7 @@ public class HomePanel extends JPanel {
      */
     private void startComponents() {
         // Create and configure welcome label
-        welcomeLabel = new JLabel("Welcome to the Bakery", SwingConstants.CENTER);
+        welcomeLabel = new JLabel("Welcome to the Books System", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
         welcomeLabel.setForeground(new Color(60, 60, 60));
 
