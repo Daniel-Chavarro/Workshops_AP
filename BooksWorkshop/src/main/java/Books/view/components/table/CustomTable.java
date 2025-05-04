@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.util.Vector;
 
 
 public class CustomTable extends JTable {
@@ -32,11 +33,18 @@ public class CustomTable extends JTable {
     }
 
 
-    public void addRow(Object[] rowData) {
+    public void addRow(Vector<Object> rowData) {
         model.addRow(rowData);
     }
 
     public void clearRows() {
         model.setRowCount(0);
+    }
+
+    public void writeTable(Vector<Vector<Object>> data) {
+        clearRows();
+        for (Vector<Object> row : data) {
+            addRow(row);
+        }
     }
 }
