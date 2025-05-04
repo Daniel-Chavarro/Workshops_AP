@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 
 public class FormBookPanel extends JPanel {
@@ -40,8 +41,8 @@ public class FormBookPanel extends JPanel {
     private JTextField facultyTextField;
 
     // UI Components - Buttons
-    private JButton saveBtn;
-    private JButton cancelBtn;
+    private JButton saveButton;
+    private JButton cancelButton;
 
     // Data
     private Book oldBook;     // Original DTO for update operations
@@ -188,13 +189,33 @@ public class FormBookPanel extends JPanel {
         buttonPanel.setOpaque(false);
 
         // Initialize buttons
-        saveBtn = factoryButton.createButton("Save", new Color(0, 123, 255), "SAVE_BOOK", new Dimension(100, 30));
-        cancelBtn = factoryButton.createButton("Cancel", new Color(0, 123, 255), "CANCEL", new Dimension(100, 30));
+        saveButton = factoryButton.createButton("Save", new Color(0, 123, 255), "SAVE_BOOK", new Dimension(100, 30));
+        cancelButton = factoryButton.createButton("Cancel", new Color(0, 123, 255), "CANCEL", new Dimension(100, 30));
 
         // Add buttons to the panel
-        buttonPanel.add(saveBtn);
-        buttonPanel.add(cancelBtn);
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
     }
+
+
+    // TODO: uncomment the code when the Book class is available and modify the method accordingly
+    public void setBookData(Book book) {
+//        bookTitleTextField.setText(book.getTitle());
+//        authorTextField.setText(book.getAuthor());
+//        priceTextField.setText(String.valueOf(book.getPrice()));
+//        typeBookComboBox.setSelectedItem(book.getTypeBook());
+//
+//        if (book.getTypeBook() == TypeBook.NOVEL) {
+//            typeNovelComboBox.setSelectedItem(book.getTypeNovel());
+//        } else if (book.getTypeBook() == TypeBook.TEXTBOOK) {
+//            courseTextField.setText(book.getCourse());
+//        } else if (book.getTypeBook() == TypeBook.TEXTBOOKUNIVERSITY) {
+//            courseTextField.setText(book.getCourse());
+//            facultyTextField.setText(book.getFaculty());
+//        }
+    }
+
+
 
     private ActionListener modifyTypeBookListener = new ActionListener() {
         @Override
@@ -354,20 +375,20 @@ public class FormBookPanel extends JPanel {
         this.facultyTextField = facultyTextField;
     }
 
-    public JButton getSaveBtn() {
-        return saveBtn;
+    public JButton getSaveButton() {
+        return saveButton;
     }
 
-    public void setSaveBtn(JButton saveBtn) {
-        this.saveBtn = saveBtn;
+    public void setSaveButton(JButton saveButton) {
+        this.saveButton = saveButton;
     }
 
-    public JButton getCancelBtn() {
-        return cancelBtn;
+    public JButton getCancelButton() {
+        return cancelButton;
     }
 
-    public void setCancelBtn(JButton cancelBtn) {
-        this.cancelBtn = cancelBtn;
+    public void setCancelButton(JButton cancelButton) {
+        this.cancelButton = cancelButton;
     }
 
     public Book getOldBook() {

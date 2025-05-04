@@ -2,11 +2,13 @@ package Books.view;
 
 import Books.view.components.button.ButtonCreator;
 import Books.view.components.button.FactoryButton;
+import Books.view.components.table.CustomTable;
 import Books.view.components.table.TableCreator;
 import Books.view.components.table.FactoryTable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public class ManageBooksPanel extends JPanel {
     // Factory for creating buttons
@@ -29,6 +31,7 @@ public class ManageBooksPanel extends JPanel {
     private JButton deleteButton;
     private JButton updateButton;
     private JButton backButton;
+    private JButton viewDetailsButton;
 
 
 
@@ -111,6 +114,7 @@ public class ManageBooksPanel extends JPanel {
         addButton = factoryButton.createButton("Add New Product", new Color(0, 123, 255), "ADD_BOOK", new Dimension(150, 30));
         deleteButton = factoryButton.createButton("Delete Product", new Color(220, 53, 69), "DELETE_BOOK", new Dimension(150, 30));
         updateButton = factoryButton.createButton("Update Product", new Color(40, 167, 69), "UPDATE_BOOK", new Dimension(150, 30));
+        viewDetailsButton = factoryButton.createButton("View Details", new Color(0, 123, 255), "VIEW_DETAILS", new Dimension(150, 30));
         backButton = factoryButton.createButton("Back", new Color(108, 117, 125), "BACK", new Dimension(150, 30));
 
 
@@ -119,6 +123,15 @@ public class ManageBooksPanel extends JPanel {
         bottomPanel.add(addButton);
         bottomPanel.add(deleteButton);
         bottomPanel.add(updateButton);
+        bottomPanel.add(viewDetailsButton);
+    }
+
+    public void addRowToTable(Vector<Object> row) {
+        ((CustomTable) bookTable).addRow(row);
+    }
+
+    public void writeTable(Vector<Vector<Object>> data) {
+        ((CustomTable) bookTable).writeTable(data);
     }
 
     public FactoryButton getFactoryButton() {
