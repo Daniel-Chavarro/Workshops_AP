@@ -111,11 +111,11 @@ public class ManageBooksPanel extends JPanel {
         bottomPanel.setOpaque(false);
 
         // Create action buttons with appropriate colors
-        addButton = factoryButton.createButton("Add New Product", new Color(0, 123, 255), "ADD_BOOK", new Dimension(150, 30));
-        deleteButton = factoryButton.createButton("Delete Product", new Color(220, 53, 69), "DELETE_BOOK", new Dimension(150, 30));
-        updateButton = factoryButton.createButton("Update Product", new Color(40, 167, 69), "UPDATE_BOOK", new Dimension(150, 30));
-        viewDetailsButton = factoryButton.createButton("View Details", new Color(0, 123, 255), "VIEW_DETAILS", new Dimension(150, 30));
-        backButton = factoryButton.createButton("Back", new Color(108, 117, 125), "BACK", new Dimension(150, 30));
+        addButton = factoryButton.createButton("Add New Product", new Color(0, 123, 255), "ADD_BOOK", new Dimension(130, 30));
+        deleteButton = factoryButton.createButton("Delete Product", new Color(220, 53, 69), "DELETE_BOOK", new Dimension(130, 30));
+        updateButton = factoryButton.createButton("Update Product", new Color(40, 167, 69), "UPDATE_BOOK", new Dimension(130, 30));
+        viewDetailsButton = factoryButton.createButton("View Details", new Color(0, 123, 255), "VIEW_DETAILS", new Dimension(130, 30));
+        backButton = factoryButton.createButton("Back", new Color(108, 117, 125), "BACK", new Dimension(130, 30));
 
 
         // Add buttons to panel in desired order
@@ -220,5 +220,13 @@ public class ManageBooksPanel extends JPanel {
 
     public void setBackButton(JButton backButton) {
         this.backButton = backButton;
+    }
+
+    public JButton getViewDetailsButton() {
+        return viewDetailsButton;
+    }
+
+    public void setViewDetailsButton(JButton viewDetailsButton) {
+        this.viewDetailsButton = viewDetailsButton;
     }
 }

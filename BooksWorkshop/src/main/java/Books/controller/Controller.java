@@ -27,11 +27,13 @@ public class Controller implements ActionListener {
         frame.getHomeButton().addActionListener(this);
         frame.getBooksButton().addActionListener(this);
         frame.getNewBookButton().addActionListener(this);
+        frame.getHomePanel().getManageProductsBtn().addActionListener(this);
         frame.getFormBookPanel().getSaveButton().addActionListener(this);
         frame.getFormBookPanel().getCancelButton().addActionListener(this);
         frame.getManageBooksPanel().getDeleteButton().addActionListener(this);
         frame.getManageBooksPanel().getUpdateButton().addActionListener(this);
         frame.getManageBooksPanel().getSearchButton().addActionListener(this);
+        frame.getManageBooksPanel().getViewDetailsButton().addActionListener(this);
         frame.getManageBooksPanel().getAddButton().addActionListener(this);
         frame.getManageBooksPanel().getBackButton().addActionListener(this);
     }
