@@ -118,6 +118,7 @@ public class Controller implements ActionListener {
                     }
                     data.add(row);
                     frame.getManageBooksPanel().writeTable(data);
+                    break;
                 }
                 case "VIEW_DETAILS": {
                     int selectedRow = frame.getManageBooksPanel().getBookTable().getSelectedRow();
