@@ -1,8 +1,7 @@
 package Books.controller;
 
-import Books.model.Book;
-import Books.model.TypeBook;
-import Books.model.TypeNovel;
+import Books.model.*;
+import Books.model.generic.Book;
 import Books.view.MainFrame;
 
 import javax.swing.*;
@@ -13,17 +12,17 @@ import java.util.Vector;
 
 public class Controller implements ActionListener {
     private MainFrame frame;
-//    private BookSystem bookSystem;
+    private BookSystem bookSystem;
 
 
     public Controller() {
         frame = new MainFrame();
-//      bookSystem = new BookSystem();
+        bookSystem = new BookSystem();
         setListeners();
     }
 
 
-    public void setListeners(){
+    public void setListeners() {
         frame.getHomeButton().addActionListener(this);
         frame.getBooksButton().addActionListener(this);
         frame.getNewBookButton().addActionListener(this);
@@ -67,17 +66,20 @@ public class Controller implements ActionListener {
                     newBook = getBookFromForm();
                     old = frame.getFormBookPanel().getOldBook();
                     if (old == null) {
-                        // bookSystem.addBook(newBook);
+                        bookSystem.addBook(newBook);
                         JOptionPane.showMessageDialog(frame, "Book added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        // bookSystem.updateBook(old, newBook);
+                        if (old.getTypeBook() != newBook.getTypeBook()) {
+                            throw new IllegalArgumentException("Book type cannot be changed.");
+                        }
+                        bookSystem.updateBook(old.getId(), newBook);
                         JOptionPane.showMessageDialog(frame, "Book updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     frame.getFormBookPanel().setOldBook(null);
 
-                    //ArrayList<Book> books = bookSystem.getAllBooks();
-                    // frame.getManageBooksPanel().writeTable(arraylistBooksToVector(books));
+                    ArrayList<Book> books = bookSystem.getAllBooks();
+                    frame.getManageBooksPanel().writeTable(arraylistBooksToVector(books));
                     frame.showPanel(frame.getManageBooksPanel());
                     break;
                 }
@@ -87,9 +89,9 @@ public class Controller implements ActionListener {
                         throw new IllegalArgumentException("Please select a book to delete.");
                     }
                     int bookId = getBookIdFromTable(selectedRow);
-                    // bookSystem.deleteBook(bookId);
-                    //ArrayList<Book> books = bookSystem.getAllBooks();
-                    // frame.getManageBooksPanel().writeTable(arraylistBooksToVector(books));
+                    bookSystem.deleteBook(bookId);
+                    ArrayList<Book> books = bookSystem.getAllBooks();
+                    frame.getManageBooksPanel().writeTable(arraylistBooksToVector(books));
                     JOptionPane.showMessageDialog(frame, "Book deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
@@ -100,20 +102,22 @@ public class Controller implements ActionListener {
                     }
 
                     int bookId = getBookIdFromTable(selectedRow);
-                    /* Book old = bookSystem.findBook(bookId)
+                    Book old = bookSystem.findBook(bookId);
                     frame.getFormBookPanel().setOldBook(old);
                     frame.getFormBookPanel().setBookData(old);
                     frame.showPanel(frame.getFormBookPanel());
-                    */
                     break;
                 }
                 case "SEARCH_BOOK": {
                     int idFilter = Integer.parseInt(frame.getManageBooksPanel().getIdFilterField().getText());
                     Vector<Vector<Object>> data = new Vector<>();
-                    // Book book = bookSystem.findBook(idFilter);
-                    // Vector<Object> row = bookToVector(book);
-                    // data.add(row);
-                    // frame.getManageBooksPanel().writeTable(data);
+                    Vector<Object> row = new Vector<>();
+                    Book book = bookSystem.findBook(idFilter);
+                    if (book != null) {
+                        row = bookToVector(book);
+                    }
+                    data.add(row);
+                    frame.getManageBooksPanel().writeTable(data);
                 }
                 case "VIEW_DETAILS": {
                     int selectedRow = frame.getManageBooksPanel().getBookTable().getSelectedRow();
@@ -121,8 +125,8 @@ public class Controller implements ActionListener {
                         throw new IllegalArgumentException("Please select a book to view details.");
                     }
                     int bookId = getBookIdFromTable(selectedRow);
-                    // Book book = bookSystem.findBook(bookId);
-                    // JOptionPane.showMessageDialog(frame, book.printData(), "Book Details", JOptionPane.INFORMATION_MESSAGE);
+                    Book book = bookSystem.findBook(bookId);
+                    book.printData();
                     break;
                 }
 
@@ -134,11 +138,12 @@ public class Controller implements ActionListener {
 
     /**
      * This method is used to get the book from the form.
+     *
      * @return Book object
      */
 
     private Book getBookFromForm() {
-        // FactoryBook factoryBook = new BookCreator();
+        FactoryBook factoryBook = new BookCreator();
         // Get the book details from the form
         String title, author, course, faculty;
         double price;
@@ -157,21 +162,21 @@ public class Controller implements ActionListener {
         Book book = null;
         switch (typeBook) {
             case BOOK:
-                // book = factoryBook.createBook(title, author, price);
+                book = factoryBook.createBook(title, author, price);
                 break;
             case TEXTBOOK:
                 course = frame.getFormBookPanel().getCourseTextField().getText();
                 if (course.isEmpty()) {
                     throw new IllegalArgumentException("Please fill all fields correctly.");
                 }
-                // book = factoryBook.createTextBook(title, author, price, course);
+                book = factoryBook.createTextBook(title, author, price, course);
                 break;
             case NOVEL:
                 typeNovel = (TypeNovel) frame.getFormBookPanel().getTypeNovelComboBox().getSelectedItem();
                 if (typeNovel == null) {
                     throw new IllegalArgumentException("Please fill all fields correctly.");
                 }
-                // book = factoryBook.createNovel(title, author, price, typeNovel);
+                book = factoryBook.createNovel(title, author, price, typeNovel);
                 break;
             case TEXTBOOKUNIVERSITY:
                 course = frame.getFormBookPanel().getCourseTextField().getText();
@@ -179,7 +184,7 @@ public class Controller implements ActionListener {
                 if (course.isEmpty() || faculty.isEmpty()) {
                     throw new IllegalArgumentException("Please fill all fields correctly.");
                 }
-                // book = factoryBook.createTextBookUniversity(title, author, price, university);
+                book = factoryBook.createTextBookUniversity(title, author, price, course, faculty);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid book type: " + typeBook);
@@ -191,6 +196,7 @@ public class Controller implements ActionListener {
 
     /**
      * This method is used to get the book id from the table.
+     *
      * @param row
      * @return int
      */
@@ -202,10 +208,10 @@ public class Controller implements ActionListener {
 
     private Vector<Object> bookToVector(Book book) {
         Vector<Object> row = new Vector<>();
-//        row.add(book.getId());
-//        row.add(book.getTitle());
-//        row.add(book.getAuthor());
-//        row.add(book.getPrice());
+        row.add(book.getId());
+        row.add(book.getTitle());
+        row.add(book.getAuthor());
+        row.add(book.getPrice());
         return row;
     }
 
@@ -224,5 +230,13 @@ public class Controller implements ActionListener {
 
     public void setFrame(MainFrame frame) {
         this.frame = frame;
+    }
+
+    public BookSystem getBookSystem() {
+        return bookSystem;
+    }
+
+    public void setBookSystem(BookSystem bookSystem) {
+        this.bookSystem = bookSystem;
     }
 }

@@ -1,6 +1,6 @@
 package Books.view;
 
-import Books.model.Book;
+import Books.model.generic.Book;
 import Books.model.TypeBook;
 import Books.model.TypeNovel;
 import Books.view.components.button.ButtonCreator;
@@ -8,10 +8,9 @@ import Books.view.components.button.FactoryButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.util.ArrayList;
 
 
 public class FormBookPanel extends JPanel {
@@ -46,6 +45,19 @@ public class FormBookPanel extends JPanel {
 
     // Data
     private Book oldBook;     // Original DTO for update operations
+    private ActionListener modifyTypeBookListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            TypeBook selectedType = (TypeBook) typeBookComboBox.getSelectedItem();
+            if (selectedType == TypeBook.BOOK) {
+                additionalPanel.removeAll();
+            } else {
+                modifyAdditionalPanel(selectedType);
+            }
+            additionalPanel.revalidate();
+            additionalPanel.repaint();
+        }
+    };
 
     public FormBookPanel() {
         factoryButton = new ButtonCreator();
@@ -53,7 +65,6 @@ public class FormBookPanel extends JPanel {
         setBackground(Color.decode("#F5F5F5"));
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         setPreferredSize(new Dimension(500, 500));
-
 
 
         // Initialize components
@@ -86,10 +97,10 @@ public class FormBookPanel extends JPanel {
 
         // Initialize labels
         JLabel[] labels = {
-            typeBookLabel,
-            bookTitleLabel,
-            authorLabel,
-            priceLabel,
+                typeBookLabel,
+                bookTitleLabel,
+                authorLabel,
+                priceLabel,
         };
 
         typeBookComboBox = new JComboBox<>(TypeBook.values());
@@ -98,10 +109,10 @@ public class FormBookPanel extends JPanel {
         priceTextField = new JTextField();
 
         JComponent[] inputs = {
-            typeBookComboBox,
-            bookTitleTextField,
-            authorTextField,
-            priceTextField,
+                typeBookComboBox,
+                bookTitleTextField,
+                authorTextField,
+                priceTextField,
         };
 
         // Add labels and input fields to the form panel
@@ -119,7 +130,7 @@ public class FormBookPanel extends JPanel {
         }
     }
 
-    public void createAdditionalPanel(){
+    public void createAdditionalPanel() {
         additionalPanel = new JPanel();
         additionalPanel.setLayout(new GridBagLayout());
         additionalPanel.setBackground(Color.WHITE);
@@ -144,13 +155,15 @@ public class FormBookPanel extends JPanel {
                 typeNovelComboBox = new JComboBox<>(TypeNovel.values());
                 labels.add(typeNovelLabel);
                 inputs.add(typeNovelComboBox);
-                break;}
+                break;
+            }
             case TEXTBOOK: {
                 courseLabel = new JLabel("Course Title:");
                 courseTextField = new JTextField();
                 labels.add(courseLabel);
                 inputs.add(courseTextField);
-                break;}
+                break;
+            }
             case TEXTBOOKUNIVERSITY: {
                 courseLabel = new JLabel("Course Title:");
                 courseTextField = new JTextField();
@@ -160,8 +173,9 @@ public class FormBookPanel extends JPanel {
                 labels.add(facultyLabel);
                 inputs.add(courseTextField);
                 inputs.add(facultyTextField);
-                break;}
+                break;
             }
+        }
 
         // Add labels and input fields to the form panel
         for (int i = 0; i < labels.size(); i++) {
@@ -197,7 +211,6 @@ public class FormBookPanel extends JPanel {
         buttonPanel.add(cancelButton);
     }
 
-
     // TODO: uncomment the code when the Book class is available and modify the method accordingly
     public void setBookData(Book book) {
 //        bookTitleTextField.setText(book.getTitle());
@@ -214,22 +227,6 @@ public class FormBookPanel extends JPanel {
 //            facultyTextField.setText(book.getFaculty());
 //        }
     }
-
-
-
-    private ActionListener modifyTypeBookListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            TypeBook selectedType = (TypeBook) typeBookComboBox.getSelectedItem();
-            if (selectedType == TypeBook.BOOK) {
-                additionalPanel.removeAll();
-            } else{
-                modifyAdditionalPanel(selectedType);
-            }
-            additionalPanel.revalidate();
-            additionalPanel.repaint();
-        }
-    };
 
     public FactoryButton getFactoryButton() {
         return factoryButton;

@@ -48,7 +48,7 @@ public class HomePanel extends JPanel {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(60, 100, 60, 100));
 
         // Create and configure buttons
-        manageProductsBtn = factoryButton.createButton("Manage Products", new Color(0, 123, 255), "MANAGE_BOOK",  new Dimension(150, 50));
+        manageProductsBtn = factoryButton.createButton("Manage Products", new Color(0, 123, 255), "MANAGE_BOOK", new Dimension(150, 50));
 
 
         // Add buttons to panel
