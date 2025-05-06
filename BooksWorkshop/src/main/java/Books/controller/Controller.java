@@ -117,7 +117,6 @@ public class Controller implements ActionListener {
                         row = bookToVector(book);
                     }
                     data.add(row);
-                    data.add(row);
                     frame.getManageBooksPanel().writeTable(data);
                 }
                 case "VIEW_DETAILS": {
