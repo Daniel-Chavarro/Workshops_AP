@@ -3,8 +3,8 @@ package Books.view;
 import Books.view.components.button.ButtonCreator;
 import Books.view.components.button.FactoryButton;
 import Books.view.components.table.CustomTable;
-import Books.view.components.table.TableCreator;
 import Books.view.components.table.FactoryTable;
+import Books.view.components.table.TableCreator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,6 @@ public class ManageBooksPanel extends JPanel {
     private JButton updateButton;
     private JButton backButton;
     private JButton viewDetailsButton;
-
 
 
     /**
