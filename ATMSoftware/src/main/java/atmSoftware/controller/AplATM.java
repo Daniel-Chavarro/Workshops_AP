@@ -13,7 +13,7 @@ public class AplATM {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // Set look and feel to system default
+        // Set the look and feel to the system's default
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
